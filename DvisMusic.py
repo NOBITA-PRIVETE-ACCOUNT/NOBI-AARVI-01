@@ -201,8 +201,8 @@ async def main():
         LOGGER.info(f"🚫 Assɪsᴛᴀɴᴛ Eʀʀᴏʀ: {e}")
         sys.exit()
     try:
-        await app.join_chat("net_pro_max")
-        await app.join_chat("ai_image_junction")
+        await app.join_chat("NOBITA_ALL_BOT")
+        await app.join_chat("NOBITA_SUPPORT")
     except Exception:
         pass
     if LOG_GROUP_ID != 0:
@@ -219,7 +219,7 @@ async def main():
     LOGGER.info("✅ PyTgCalls Started.")
     await asyncio.sleep(1)
     LOGGER.info("✅ Sucessfully Hosted Your Bot !!")
-    LOGGER.info("✅ Now Do Visit: @net_pro_max !!")
+    LOGGER.info("✅ Now Do Visit: @NOBITA_ALL_BOT !!")
     await idle()
 
 
@@ -348,7 +348,7 @@ async def start_message_private(client, message):
 │❍ • ɴᴏ ʟᴀɢs + ɴᴏ ᴀᴅs •‍
 │❍ • 24x7 ᴏɴʟɪɴᴇ sᴜᴘᴘᴏʀᴛ •‍
 ├───────────────────⦿‍
-│      [✰ 𝖮ᴡ፝֠֩𝛈𝛆ʀ  ✰](https://t.me/DvisDmBot)
+│      [✰ 𝖮ᴡ፝֠֩𝛈𝛆ʀ  ✰](https://t.me/ll_SIZUKA_BOT_MAKER_II)
 ╰───────────────────⦿"""
     buttons = InlineKeyboardMarkup(
         [
@@ -434,7 +434,7 @@ async def back_to_home_menu(client, query):
 │❍ • ɴᴏ ʟᴀɢs + ɴᴏ ᴀᴅs •‍
 │❍ • 24x7 ᴏɴʟɪɴᴇ sᴜᴘᴘᴏʀᴛ •‍
 ├───────────────────⦿‍
-│          [✰ 𝖮ᴡ፝֠֩𝛈𝛆ʀ  ✰](https://t.me/DvisDmBot)
+│          [✰ 𝖮ᴡ፝֠֩𝛈𝛆ʀ  ✰](https://t.me/ll_SIZUKA_BOT_MAKER_II)
 ╰───────────────────⦿"""
     buttons = InlineKeyboardMarkup(
         [
@@ -742,7 +742,7 @@ async def stream_logger(
 **❍ Cʜᴀᴛ Lɪɴᴋ:** {chat_link}
 **❍ Rᴇǫᴜᴇsᴛᴇᴅ ʙʏ:** {requested_by}
 
-❍ 𝖩ᴏɪɴ ➛ **[sᴜᴘᴘᴏꝛᴛ](https://t.me/+7ehnJA3aMb84OGNl)**"""
+❍ 𝖩ᴏɪɴ ➛ **[sᴜᴘᴘᴏꝛᴛ](https://t.me/NOBITA_ALL_BOT)**"""
             else:
                 caption = f"""**✅ 𝐒ᴛᴀʀᴛᴇᴅ 𝐒ᴛʀᴇᴀᴍɪɴɢ 𝐎ɴ 𝐕ᴄ.**
 
@@ -813,7 +813,7 @@ async def change_stream(chat_id):
 **❍ Sᴛʀᴇᴀᴍ Tʏᴘᴇ ➥ ** {stream_type}
 **❍ Rᴇǫᴜᴇsᴛᴇᴅ ʙʏ ➥ ** {requested_by}
 
-❍ ᴘᴏᴡᴇʀᴇᴅ ʙʏ➛ @EraVibesXbot"""
+❍ ᴘᴏᴡᴇʀᴇᴅ ʙʏ➛ @Aarvi_Music_xBot"""
     buttons = InlineKeyboardMarkup(
         [
             [
@@ -1019,7 +1019,7 @@ async def stream_audio_or_video(client, message):
 **❍ Sᴛʀᴇᴀᴍ Tʏᴘᴇ ➥ ** {stream_type}
 **❍ Rᴇǫᴜᴇsᴛᴇᴅ ʙʏ ➥ ** {requested_by}
 
-❍ 𝖩ᴏɪɴ ➛ **[sᴜᴘᴘᴏꝛᴛ](https://t.me/+7ehnJA3aMb84OGNl)**"""
+❍ 𝖩ᴏɪɴ ➛ **[sᴜᴘᴘᴏꝛᴛ](https://t.me/NOBITA_SUPPORT)**"""
                 await bot.send_photo(chat_id, thumbnail, caption, reply_markup=buttons)
                 await stream_logger(
                     chat_id, user, title, duration, stream_type, thumbnail, position
@@ -1320,7 +1320,7 @@ async def git_repo_link(client, message):
 │❍ • ɴᴏ ʟᴀɢs + ɴᴏ ᴀᴅs •‍
 │❍ • 24x7 ᴏɴʟɪɴᴇ sᴜᴘᴘᴏʀᴛ •‍
 ├───────────────────⦿‍
-│        [✰ 𝖮ᴡ፝֠֩𝛈𝛆ʀ  ✰](https://t.me/DvisDmBot)
+│        [✰ 𝖮ᴡ፝֠֩𝛈𝛆ʀ  ✰](https://t.me/ll_SIZUKA_BOT_MAKER_II)
 ╰───────────────────⦿"""
     else:
         caption = f"**➻ Hello, {mention}.**"
@@ -1328,8 +1328,8 @@ async def git_repo_link(client, message):
         [
             [
                 InlineKeyboardButton(
-                    text="🌺 𝐎ᴘᴇɴ 𝐑ᴇᴘᴏsɪᴛᴏʀʏ 𝐋ɪɴᴋ 🦋",
-                    url="https://github.com/IamDvis/DV-MUSIC-V2",
+                    text="🌺 𝗕𝗘𝗧𝗔 𝗧𝗢𝗨𝗖𝗛 𝗞𝗥𝗢 🦋",
+                    url="https://files.catbox.moe/7rmgyr.mp4",
                 )
             ],
             [
@@ -1400,7 +1400,7 @@ async def check_bot_stats(client, message):
     except:
         pass
     photo = START_IMAGE_URL
-    caption = "**⏤͟͞DVIS MUSIC STATS ༗**"
+    caption = "**NOBITA MUSIC STATS ༗**"
     buttons = InlineKeyboardMarkup(
         [
             [
