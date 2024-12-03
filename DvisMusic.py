@@ -135,7 +135,8 @@ call = PyTgCalls(app)
 call_config = GroupCallConfig(auto_start=False)
 
 mongo_async_cli = _mongo_async_(MONGO_DB_URL)
-mongodb = mongo_async_cli.adityaxdb
+mongodb = mongo_async_cli.dvisxdb
+
 
 # store start time
 __start_time__ = time.time()
@@ -174,7 +175,6 @@ async def main():
     if not STRING_SESSION:
         LOGGER.info("❌ 'STRING_SESSION' - Not Found ‼️")
         sys.exit()
-
     if not MONGO_DB_URL:
         LOGGER.info("'MONGO_DB_URL' - Not Found !!")
         sys.exit()
@@ -200,11 +200,11 @@ async def main():
     try:
         await app.start()
     except Exception as e:
-        LOGGER.info(f"🚫 Assistant Error: {e}")
+        LOGGER.info(f"🚫 Assɪsᴛᴀɴᴛ Eʀʀᴏʀ: {e}")
         sys.exit()
     try:
-        await app.join_chat("AdityaServer")
-        await app.join_chat("AdityaDiscus")
+        await app.join_chat("net_pro_max")
+        await app.join_chat("ai_image_junction")
     except Exception:
         pass
     if LOG_GROUP_ID != 0:
@@ -221,15 +221,8 @@ async def main():
     LOGGER.info("✅ PyTgCalls Started.")
     await asyncio.sleep(1)
     LOGGER.info("✅ Sucessfully Hosted Your Bot !!")
-    LOGGER.info("✅ Now Do Visit: @AdityaServer !!")
+    LOGGER.info("✅ Now Do Visit: @net_pro_max !!")
     await idle()
-
-
-
-
-
-
-
 
 
 # Some Required Functions ...!!
@@ -337,95 +330,88 @@ async def add_served_user(user_id: int):
     return await usersdb.insert_one({"user_id": user_id})
 
 
-
-
-
-
-
-
-
-
-
-
-
 # Callback & Message Queries
 
 
-@bot.on_message(cdx(["start", "help"]) & pyrofl.private)
+@bot.on_message(cdx("start") & pyrofl.private)
 async def start_message_private(client, message):
-    user_id = message.from_user.id
     mention = message.from_user.mention
-    await add_served_user(user_id)
-    if len(message.text.split()) > 1:
-        name = message.text.split(None, 1)[1]
-        if name[0:5] == "verify":
-            pass
-            
-    else:
-        caption = f"""**➻ Hello, {mention}
-
-🥀 I am An ≽ Advanced ≽ High Quality
-Bot, I Can Stream 🌿 Audio & Video In
-Your ♚ Channel And Group.
-
-🐬 Must Click ❥ Open Command List
-Button ⋟ To Get More Info's 🦋 About
-My All Commands.
-
-💐 Feel Free ≽ To Use Me › And Share
-With Your ☛ Other Friends.**"""
-        buttons = InlineKeyboardMarkup(
+    caption = f"""
+╭───────────────────⦿‍
+│❍ • ʜᴇʏ  {mention} •‍
+│❍ • ɪ ᴀᴍ  @{bot.me.username}•‍
+├───────────────────⦿‍
+│❍ • ɪ ʜᴀᴠᴇ sᴘᴇᴄɪᴀʟ ғᴇᴀᴛᴜʀᴇs •‍
+├───────────────────⦿‍
+│❍ • ᴀ ғᴀsᴛ & ᴘᴏᴡᴇʀғᴜʟ ᴛᴇʟᴇɢʀᴀᴍ ᴍᴜsɪᴄ‍
+│  ʙᴏᴛ ᴡɪᴛʜ ᴀᴡᴇsᴏᴍᴇ ғᴇᴀᴛᴜʀᴇs‍
+│❍ • ʏᴏᴜ ᴄᴀɴ ᴘʟᴀʏ ᴍᴜꜱɪᴄ + ᴠɪᴅᴇᴏ •‍
+│❍ • ʙᴇsᴛ ǫᴜɪʟɪᴛʏ ᴍᴜsɪᴄ sᴏᴜɴᴅ •‍
+│❍ • ɴᴏ ʟᴀɢs + ɴᴏ ᴀᴅs •‍
+│❍ • 24x7 ᴏɴʟɪɴᴇ sᴜᴘᴘᴏʀᴛ •‍
+├───────────────────⦿‍
+│           [✰ 𝖮ᴡ፝֠֩𝛈𝛆ʀ  ✰](https://t.me/DvisDmBot)
+╰───────────────────⦿"""
+    buttons = InlineKeyboardMarkup(
+        [
             [
-                [
-                    InlineKeyboardButton(
-                        text="🥀 Add Me In Your Chat ✨",
-                        url=f"https://t.me/{bot.me.username}?startgroup=true",
-                    )
-                ],
-                [
-                    InlineKeyboardButton(
-                        text="🌺 Open Command List 🌷",
-                        callback_data="open_command_list",
-                    )
-                ],
-            ]
-        )
-        if START_IMAGE_URL:
-            try:
-                return await message.reply_photo(
-                    photo=START_IMAGE_URL, caption=caption, reply_markup=buttons
+                InlineKeyboardButton(
+                    text="• ᴧᴅᴅ мᴇ ʙᴧʙʏ •",
+                    url=f"https://t.me/{bot.me.username}?startgroup=true",
                 )
-            except Exception as e:
-                LOGGER.info(f"🚫 Start Image Error: {e}")
-                try:
-                    return await message.reply_text(text=caption, reply_markup=buttons)
-                except Exception as e:
-                    LOGGER.info(f"🚫 Start Error: {e}")
-                    return
-        else:
+            ],
+            [
+                InlineKeyboardButton(
+                    text="💌 𝖧ᴇʟᴘ $ 𝖢ᴏᴍᴍᴀɴᴅs 💌",
+                    callback_data="help_command_list",
+                )
+            ],
+        ]
+    )
+    if START_IMAGE_URL:
+        try:
+            return await message.reply_photo(
+                photo=START_IMAGE_URL, caption=caption, reply_markup=buttons
+            )
+        except Exception as e:
+            LOGGER.info(f"🚫 Start Image Error: {e}")
             try:
                 return await message.reply_text(text=caption, reply_markup=buttons)
             except Exception as e:
                 LOGGER.info(f"🚫 Start Error: {e}")
                 return
+    else:
+        try:
+            return await message.reply_text(text=caption, reply_markup=buttons)
+        except Exception as e:
+            LOGGER.info(f"🚫 Start Error: {e}")
+            return
 
 
-
-
-@bot.on_callback_query(rgx("open_command_list"))
+@bot.on_callback_query(rgx("help_command_list"))
 async def open_command_list_alert(client, query):
-    caption = """**🥀 All Members Can Use:**
-/play - Stream Only Audio On VC.
-/vplay - Stream Audio With Video.
+    caption = """
+♡━━━━━━━━━━━━━━⚆ _ ⚆━━━━━━━━━━━━━♡ 
+**✫ ᴀʟʟ ᴍᴇᴍʙᴇʀs ᴄᴀɴ ᴜsᴇ :**
+  ● /play - Stream Only Audio On VC.
+  ● /vplay - Stream Audio With Video.
 
-**👾 Only For Chat Admins:**
-/pause - Pause Running Stream.
-/resume - Resume Paused Stream.
-/skip - Skip Current Stream To Next.
-/end - Stop Current Running Stream.
+**✫ ᴏɴʟʏ ғᴏʀ ᴄʜᴀᴛ ᴀᴅᴍɪɴs :**
+  ● /pause - Pause Running Stream.
+  ● /resume - Resume Paused Stream.
+  ● /skip - Skip Current Stream To Next.
+  ● /end - Stop Current Running Stream.
 
 **Note:** All Commands Will Work
-Only in Channels/Groups."""
+Only in Channels/Groups.
+♡━━━━━━━━━━━━━━⚆ _ ⚆━━━━━━━━━━━━━♡
+
+**✫ ᴏɴʟʏ ғᴏʀ ᴏᴡɴᴇʀ :**
+   ● /ping - Oᴡɴᴇʀs Nᴏᴡ
+   ● /stats - Oᴡɴᴇʀs Nᴏᴡ
+   ● /gcast - Oᴡɴᴇʀs Nᴏᴡ
+
+"""
     buttons = InlineKeyboardMarkup(
         [
             [
@@ -446,29 +432,33 @@ Only in Channels/Groups."""
 @bot.on_callback_query(rgx("back_to_home"))
 async def back_to_home_menu(client, query):
     mention = query.from_user.mention
-    caption = f"""**➻ Hello, {mention}
-
-🥀 I am An ≽ Advanced ≽ High Quality
-Bot, I Can Stream 🌿 Audio & Video In
-Your ♚ Channel And Group.
-
-🐬 Must Click ❥ Open Command List
-Button ⋟ To Get More Info's 🦋 About
-My All Commands.
-
-💐 Feel Free ≽ To Use Me › And Share
-With Your ☛ Other Friends.**"""
+    caption = f"""
+╭───────────────────⦿‍
+│❍ • ʜᴇʏ  {mention} •‍
+│❍ • ɪ ᴀᴍ  @{bot.me.username}•‍
+├───────────────────⦿‍
+│❍ • ɪ ʜᴀᴠᴇ sᴘᴇᴄɪᴀʟ ғᴇᴀᴛᴜʀᴇs •‍
+├───────────────────⦿‍
+│❍ • ᴀ ғᴀsᴛ & ᴘᴏᴡᴇʀғᴜʟ ᴛᴇʟᴇɢʀᴀᴍ ᴍᴜsɪᴄ‍
+│     ʙᴏᴛ ᴡɪᴛʜ ᴀᴡᴇsᴏᴍᴇ ғᴇᴀᴛᴜʀᴇs‍
+│❍ • ʏᴏᴜ ᴄᴀɴ ᴘʟᴀʏ ᴍᴜꜱɪᴄ + ᴠɪᴅᴇᴏ •‍
+│❍ • ʙᴇsᴛ ǫᴜɪʟɪᴛʏ ᴍᴜsɪᴄ sᴏᴜɴᴅ •‍
+│❍ • ɴᴏ ʟᴀɢs + ɴᴏ ᴀᴅs •‍
+│❍ • 24x7 ᴏɴʟɪɴᴇ sᴜᴘᴘᴏʀᴛ •‍
+├───────────────────⦿‍
+│               [✰ 𝖮ᴡ፝֠֩𝛈𝛆ʀ  ✰](https://t.me/DvisDmBot)
+╰───────────────────⦿"""
     buttons = InlineKeyboardMarkup(
         [
             [
                 InlineKeyboardButton(
-                    text="🥀 Add Me In Your Chat ✨",
+                    text="• ᴧᴅᴅ мᴇ ʙᴧʙʏ •",
                     url=f"https://t.me/{bot.me.username}?startgroup=true",
                 )
             ],
             [
                 InlineKeyboardButton(
-                    text="🌺 Open Command List 🌷",
+                    text="ʜᴇʟᴘ ᴄᴏᴍᴍᴀɴᴅs",
                     callback_data="open_command_list",
                 )
             ],
@@ -669,19 +659,20 @@ async def create_thumbnail(results, user_id):
 # Some Functions For VC Player
 
 
-async def add_active_media_chat(
-    chat_id, stream_type
-):
-    if stream_type == "Audio":
-        if chat_id in ACTIVE_VIDEO_CHATS:
-            ACTIVE_VIDEO_CHATS.remove(chat_id)
-        if chat_id not in ACTIVE_AUDIO_CHATS:
-            ACTIVE_AUDIO_CHATS.append(chat_id)
-    elif stream_type == "Video":
-        if chat_id in ACTIVE_AUDIO_CHATS:
-            ACTIVE_AUDIO_CHATS.remove(chat_id)
-        if chat_id not in ACTIVE_VIDEO_CHATS:
-            ACTIVE_VIDEO_CHATS.append(chat_id)
+async def add_active_audio_chat(chat_id):
+    if chat_id in ACTIVE_VIDEO_CHATS:
+        ACTIVE_VIDEO_CHATS.remove(chat_id)
+    if chat_id not in ACTIVE_AUDIO_CHATS:
+        ACTIVE_AUDIO_CHATS.append(chat_id)
+    if chat_id not in ACTIVE_MEDIA_CHATS:
+        ACTIVE_MEDIA_CHATS.append(chat_id)
+
+
+async def add_active_video_chat(chat_id):
+    if chat_id in ACTIVE_AUDIO_CHATS:
+        ACTIVE_AUDIO_CHATS.remove(chat_id)
+    if chat_id not in ACTIVE_VIDEO_CHATS:
+        ACTIVE_VIDEO_CHATS.append(chat_id)
     if chat_id not in ACTIVE_MEDIA_CHATS:
         ACTIVE_MEDIA_CHATS.append(chat_id)
 
@@ -754,23 +745,27 @@ async def stream_logger(
             except Exception:
                 requested_by = user.title
             if position:
-                caption = f"""**✅ Added To Queue At :** `#{position}`
+                caption = f"""**✅ 𝐀ᴅᴅᴇᴅ 𝐓ᴏ 𝐐ᴜᴇᴜᴇ 𝐀ᴛ :** `#{position}`
 
-**🥀 Title:** {title}
-**🐬 Duration:** {duration}
-**🦋 Stream Type:** {stream_type}
-**🌺 Chat Name:** {chat_name}
-**🌼 Chat Link:** {chat_link}
-**👾 Requested By:** {requested_by}"""
+**❍ Tɪᴛʟᴇ** {title}
+**❍ Dᴜʀᴀᴛɪᴏɴ :** {duration}
+**❍ Sᴛʀᴇᴀᴍ Tʏᴘᴇ:** {stream_type}
+**❍ Cʜᴀᴛ Nᴀᴍᴇ:** {chat_name}
+**❍ Cʜᴀᴛ Lɪɴᴋ:** {chat_link}
+**❍ Rᴇǫᴜᴇsᴛᴇᴅ ʙʏ:** {requested_by}
+
+❍ 𝖩ᴏɪɴ ➛ **[sᴜᴘᴘᴏꝛᴛ](https://t.me/+7ehnJA3aMb84OGNl)**"""
             else:
-                caption = f"""**✅ Started Streaming On VC.**
+                caption = f"""**✅ 𝐒ᴛᴀʀᴛᴇᴅ 𝐒ᴛʀᴇᴀᴍɪɴɢ 𝐎ɴ 𝐕ᴄ.**
 
-**🥀 Title:** {title}
-**🐬 Duration:** {duration}
-**🦋 Stream Type:** {stream_type}
-**🌺 Chat Name:** {chat_name}
-**🌼 Chat Link:** {chat_link}
-**👾 Requested By:** {requested_by}"""
+**❍ Tɪᴛʟᴇ** {title}
+**❍ Dᴜʀᴀᴛɪᴏɴ :** {duration}
+**❍ Sᴛʀᴇᴀᴍ Tʏᴘᴇ:** {stream_type}
+**❍ Cʜᴀᴛ Nᴀᴍᴇ:** {chat_name}
+**❍ Cʜᴀᴛ Lɪɴᴋ:** {chat_link}
+**❍ Rᴇǫᴜᴇsᴛᴇᴅ ʙʏ:** {requested_by}
+
+❍ ᴘᴏᴡᴇʀᴇᴅ ʙʏ➛ @EraVibesXbot"""
             try:
                 await bot.send_photo(LOG_GROUP_ID, photo=thumbnail, caption=caption)
             except Exception:
@@ -785,7 +780,7 @@ async def change_stream(chat_id):
     if queued:
         queued.pop(0)
     if not queued:
-        await bot.send_message(chat_id, "**❎ Queue is Empty, So Left\nFrom VC❗...**")
+        await bot.send_message(chat_id, "**❎ 𝐐ᴜᴇᴜᴇ 𝐈s 𝐄ᴍᴘᴛʏ 𝐒ᴏ 𝐋ᴇғᴛ\n𝐅ʀᴏᴍ 𝐕ᴄ❗...**")
         return await close_stream(chat_id)
 
     title = queued[0].get("title")
@@ -823,13 +818,14 @@ async def change_stream(chat_id):
         )
 
     await call.play(chat_id, stream_media, config=call_config)
-    await add_active_media_chat(chat_id, stream_type)
-    caption = f"""**✅ Started Streaming On VC.**
+    caption = f"""**✅ 𝐒ᴛᴀʀᴛᴇᴅ 𝐒ᴛʀᴇᴀᴍɪɴɢ 𝐎ɴ 𝐕ᴄ.**
 
-**🥀 Title:** {title}
-**🐬 Duration:** {duration}
-**🦋 Stream Type:** {stream_type}
-**👾 Requested By:** {requested_by}"""
+**❍ Tɪᴛʟᴇ ➥ ** {title}
+**❍ Dᴜʀᴀᴛɪᴏɴ ➥ ** {duration}
+**❍ Sᴛʀᴇᴀᴍ Tʏᴘᴇ ➥ ** {stream_type}
+**❍ Rᴇǫᴜᴇsᴛᴇᴅ ʙʏ ➥ ** {requested_by}
+
+❍ ᴘᴏᴡᴇʀᴇᴅ ʙʏ➛ @EraVibesXbot"""
     buttons = InlineKeyboardMarkup(
         [
             [
@@ -880,7 +876,6 @@ async def stream_audio_or_video(client, message):
     except Exception:
         pass
     chat_id = message.chat.id
-    await add_served_chat(chat_id)
     user = message.from_user if message.from_user else message.sender_chat
     replied = message.reply_to_message
     audio = (replied.audio or replied.voice) if replied else None
@@ -935,7 +930,7 @@ async def stream_audio_or_video(client, message):
                 ]
             )
             return await aux.edit_text(
-                "**🥀 Give Me Some Query To\nPlay Audio Or Video❗...\n\nℹ️ Examples:\n≽ Audio: `/play satisfya`\n≽ Video: `/vplay satisfya`**",
+                "**🥀 𝐆ɪᴠᴇ 𝐌ᴇ  𝐒ᴏᴍᴇ 𝐐ᴜᴇʀʏ To\n𝐏ʟᴀʏ 𝐀ᴜᴅɪᴏ 𝐕ɪᴅᴇᴏ❗...\n\nℹ️ 𝐄xᴀᴍᴘʟᴇs:\n≽ 𝐀ᴜᴅɪᴏ: `/play siya ram`\n≽ 𝐕ɪᴅᴇᴏ: `/vplay siya ram`**",
                 reply_markup=buttons,
             )
         query = message.text.split(None, 1)[1]
@@ -1029,12 +1024,14 @@ async def stream_audio_or_video(client, message):
                 position = await add_to_queue(
                     chat_id, user, title, duration, stream_file, stream_type, thumbnail
                 )
-                caption = f"""**✅ Added To Queue At :** `#{position}`
+                caption = f"""**✅ 𝐀ᴅᴅᴇᴅ 𝐓ᴏ 𝐐ᴜᴇᴜᴇ 𝐀ᴛ :** `#{position}`
 
-**🥀 Title:** {title}
-**🐬 Duration:** {duration}
-**🦋 Stream Type:** {stream_type}
-**👾 Requested By:** {requested_by}"""
+**❍ Tɪᴛʟᴇ ➥ ** {title}
+**❍ Dᴜʀᴀᴛɪᴏɴ ➥ ** {duration}
+**❍ Sᴛʀᴇᴀᴍ Tʏᴘᴇ ➥ ** {stream_type}
+**❍ Rᴇǫᴜᴇsᴛᴇᴅ ʙʏ ➥ ** {requested_by}
+
+❍ 𝖩ᴏɪɴ ➛ **[sᴜᴘᴘᴏꝛᴛ](https://t.me/+7ehnJA3aMb84OGNl)**"""
                 await bot.send_photo(chat_id, thumbnail, caption, reply_markup=buttons)
                 await stream_logger(
                     chat_id, user, title, duration, stream_type, thumbnail, position
@@ -1057,20 +1054,20 @@ async def stream_audio_or_video(client, message):
                     ):
                         try:
                             return await aux.edit_text(
-                                f"**🤖 At First, Unban [Assistant ID](https://t.me/{app.me.username}) To Start Stream❗**"
+                                f"🤖 Aᴛ Fɪʀsᴛ, Uɴʙᴀɴ [𝗔𝘀𝘀𝗶𝘀𝘁𝗮𝗻𝘁 𝗜𝗗](https://t.me/{app.me.username}) Tᴏ Sᴛᴀʀᴛ Sᴛʀᴇᴀᴍ❗"
                             )
                         except Exception:
                             LOGGER.info(
-                                f"🤖 At First, Unban Assistant ID To Start Stream❗**"
+                                f"🤖 Aᴛ Fɪʀsᴛ, Uɴʙᴀɴ **Assɪsᴛᴀɴᴛ ID** Tᴏ Sᴛᴀʀᴛ Sᴛʀᴇᴀᴍ❗"
                             )
                             return
                 except ChatAdminRequired:
                     try:
                         return await aux.edit_text(
-                            "**🤖 At First, Promote Me as An Admin❗**"
+                            "🤖 Aᴛ Fɪʀsᴛ, **Pʀᴏᴍᴏᴛᴇ Mᴇ** ᴀs Aɴ **Aᴅᴍɪɴ**❗"
                         )
                     except Exception:
-                        LOGGER.info("**🤖 At First, Promote Me as An Admin❗**")
+                        LOGGER.info("🤖 Aᴛ Fɪʀsᴛ, **Pʀᴏᴍᴏᴛᴇ Mᴇ** ᴀs Aɴ **Aᴅᴍɪɴ**❗")
                         return
                 except UserNotParticipant:
                     if message.chat.username:
@@ -1084,16 +1081,16 @@ async def stream_audio_or_video(client, message):
                             invitelink = await bot.export_chat_invite_link(chat_id)
                         except ChatAdminRequired:
                             return await aux.edit_text(
-                                "**🤖 Hey, I need invite user permission to add Assistant ID❗**"
+                                "**🤖 Hᴇʏ, I ɴᴇᴇᴅ ɪɴᴠɪᴛᴇ ᴜsᴇʀ ᴘᴇʀᴍɪssɪᴏɴ ᴛᴏ ᴀᴅᴅ Assɪsᴛᴀɴᴛ ID❗**"
                             )
                         except Exception as e:
                             try:
                                 return await aux.edit_text(
-                                    f"**🚫 Assistant Error:** `{e}`"
+                                    f"**🚫 Assɪsᴛᴀɴᴛ Eʀʀᴏʀ:** `{e}`"
                                 )
                             except Exception:
                                 pass
-                            LOGGER.info(f"🚫 Assistant Error: {e}")
+                            LOGGER.info(f"🚫 Assɪsᴛᴀɴᴛ Eʀʀᴏʀ: {e}")
                             return
                     try:
                         await asyncio.sleep(1)
@@ -1104,11 +1101,11 @@ async def stream_audio_or_video(client, message):
                         except Exception as e:
                             try:
                                 return await aux.edit_text(
-                                    f"**🚫 Approve Error:** `{e}`"
+                                    f"**🚫 Aᴘᴘʀᴏᴠᴇ Eʀʀᴏʀ:** `{e}`"
                                 )
                             except Exception:
                                 pass
-                            LOGGER.info(f"🚫 Approve Error: {e}")
+                            LOGGER.info(f"🚫 Aᴘᴘʀᴏᴠᴇ Eʀʀᴏʀ: {e}")
                             return
                     except UserAlreadyParticipant:
                         pass
@@ -1125,32 +1122,34 @@ async def stream_audio_or_video(client, message):
                     await call.play(chat_id, stream_media, config=call_config)
                 except NoActiveGroupCall:
                     try:
-                        return await aux.edit_text(f"**⚠️ No Active VC❗...**")
+                        return await aux.edit_text(f"**⚠️ Nᴏ Aᴄᴛɪᴠᴇ VC❗...**")
                     except Exception:
-                        LOGGER.info(f"⚠️ No Active VC ({chat_id})❗... ")
+                        LOGGER.info(f"⚠️ Nᴏ Aᴄᴛɪᴠᴇ VC ({chat_id})❗... ")
                         return
             except TelegramServerError:
-                return await aux.edit_text("**⚠️ Telegram Server Issue❗...**")
+                return await aux.edit_text("**⚠️ Tᴇʟᴇɢʀᴀᴍ Sᴇʀᴠᴇʀ Issᴜᴇ❗...**")
             try:
                 thumbnail = await create_thumbnail(result_x, user.id)
                 position = await add_to_queue(
                     chat_id, user, title, duration, stream_file, stream_type, thumbnail
                 )
-                caption = f"""**✅ Started Streaming On VC.**
+                caption = f"""**✅ 𝐒ᴛᴀʀᴛᴇᴅ 𝐒ᴛʀᴇᴀᴍɪɴɢ 𝐎ɴ 𝐕ᴄ.**
 
-**🥀 Title:** {title}
-**🐬 Duration:** {duration}
-**🦋 Stream Type:** {stream_type}
-**👾 Requested By:** {requested_by}"""
+**❍ Tɪᴛʟᴇ ➥ ** {title}
+**❍ Dᴜʀᴀᴛɪᴏɴ ➥ ** {duration}
+**❍ Sᴛʀᴇᴀᴍ Tʏᴘᴇ ➥ ** {stream_type}
+**❍ Rᴇǫᴜᴇsᴛᴇᴅ ʙʏ ➥ ** {requested_by}
+
+❍ ᴘᴏᴡᴇʀᴇᴅ ʙʏ➛ @EraVibesXbot"""
                 await bot.send_photo(chat_id, thumbnail, caption, reply_markup=buttons)
                 await stream_logger(
                     chat_id, user, title, duration, stream_type, thumbnail
                 )
             except Exception as e:
                 try:
-                    return await aux.edit(f"**Send Error:** `{e}`")
+                    return await aux.edit(f"**Sᴇɴᴅ Eʀʀᴏʀ:** `{e}`")
                 except Exception:
-                    LOGGER.info(f"Send Error: {e}")
+                    LOGGER.info(f"Sᴇɴᴅ Eʀʀᴏʀ: {e}")
                     return
         else:
             return
@@ -1158,13 +1157,12 @@ async def stream_audio_or_video(client, message):
             await aux.delete()
         except Exception:
             pass
-        await add_active_media_chat(chat_id, stream_type)
         return
     except Exception as e:
         try:
-            return await aux.edit_text(f"**Stream Error:** `{e}`")
+            return await aux.edit_text(f"**Sᴛʀᴇᴀᴍ Eʀʀᴏʀ:** `{e}`")
         except Exception:
-            LOGGER.info(f"🚫 Stream Error: {e}")
+            LOGGER.info(f"🚫 Sᴛʀᴇᴀᴍ Eʀʀᴏʀ: {e}")
             return
 
 
@@ -1178,20 +1176,20 @@ async def pause_running_stream_on_vc(client, message):
     try:
         call_status = await get_call_status(chat_id)
         if call_status == "IDLE" or call_status == "NOTHING":
-            return await message.reply_text("**❎ Nothing Streaming❗**")
+            return await message.reply_text("**❎ Nᴏᴛʜɪɴɢ Sᴛʀᴇᴀᴍɪɴɢ❗**")
 
         elif call_status == "PAUSED":
-            return await message.reply_text("**🔈 Already Paused❗**")
+            return await message.reply_text("**🔈 Aʟʀᴇᴀᴅʏ Pᴀᴜsᴇᴅ❗**")
         elif call_status == "PLAYING":
             await call.pause_stream(chat_id)
-            return await message.reply_text("**🔈 Stream Paused❗**")
+            return await message.reply_text("**🔈 Sᴛʀᴇᴀᴍ Pᴀᴜsᴇᴅ❗**")
         else:
             return
     except Exception as e:
         try:
-            await bot.send_message(chat_id, f"**🚫 Stream Pause Error:** `{e}`")
+            await bot.send_message(chat_id, f"**🚫 Sᴛʀᴇᴀᴍ Pᴀᴜsᴇ Eʀʀᴏʀ:** `{e}`")
         except Exception:
-            LOGGER.info(f"🚫 Stream Pause Error: {e}")
+            LOGGER.info(f"🚫 Sᴛʀᴇᴀᴍ Pᴀᴜsᴇ Eʀʀᴏʀ: {e}")
             return
 
 
@@ -1205,13 +1203,13 @@ async def resume_paused_stream_on_vc(client, message):
     try:
         call_status = await get_call_status(chat_id)
         if call_status == "IDLE" or call_status == "NOTHING":
-            return await message.reply_text("**❎ Nothing Streaming❗**")
+            return await message.reply_text("**❎ Nᴏᴛʜɪɴɢ Sᴛʀᴇᴀᴍɪɴɢ❗**")
 
         elif call_status == "PLAYING":
-            return await message.reply_text("**🔊 Already Streaming❗**")
+            return await message.reply_text("**🔊 Aʟʀᴇᴀᴅʏ Sᴛʀᴇᴀᴍɪɴɢ❗**")
         elif call_status == "PAUSED":
             await call.resume_stream(chat_id)
-            return await message.reply_text("**🔊 Stream Resumed❗**")
+            return await message.reply_text("**🔊 Sᴛʀᴇᴀᴍ Rᴇsᴜᴍᴇᴅ❗**")
         else:
             return
     except Exception as e:
@@ -1232,7 +1230,7 @@ async def skip_and_change_stream(client, message):
     try:
         call_status = await get_call_status(chat_id)
         if call_status == "IDLE" or call_status == "NOTHING":
-            return await bot.send_message(chat_id, "**❎ Nothing Streaming❗...**")
+            return await bot.send_message(chat_id, "**❎ Nᴏᴛʜɪɴɢ Sᴛʀᴇᴀᴍɪɴɢ❗...**")
         elif call_status == "PLAYING" or call_status == "PAUSED":
             stickers = [
                 "🌹",
@@ -1274,12 +1272,12 @@ async def stop_stream_and_leave_vc(client, message):
     try:
         call_status = await get_call_status(chat_id)
         if call_status == "NOTHING":
-            return await message.reply_text("**❎ Nothing Streaming❗**")
+            return await message.reply_text("**❎ Nᴏᴛʜɪɴɢ Sᴛʀᴇᴀᴍɪɴɢ❗**")
         elif call_status == "IDLE":
-            return await message.reply_text("**✅ Succesfully Left From VC❗**")
+            return await message.reply_text("**✅ Sᴜᴄᴄᴇsғᴜʟʟʏ Lᴇғᴛ Fʀᴏᴍ VC❗**")
         elif call_status == "PLAYING" or call_status == "PAUSED":
             await close_stream(chat_id)
-            return await message.reply_text("**❎ Stopped Stream & Left\nFrom VC❗...**")
+            return await message.reply_text("**❎ 𝐒ᴛᴏᴘᴘᴇᴅ 𝐒ᴛʀᴇᴀᴍ & 𝐋ᴇғᴛ\n𝐅ʀᴏᴍ 𝐕ᴄ  ❗...**")
         else:
             return
     except Exception as e:
@@ -1309,8 +1307,8 @@ async def check_sping(client, message):
     start = datetime.now()
     end = datetime.now()
     ms = (end - start).microseconds / 1000
-    m = await message.reply_text("**🤖 Ping...!!**")
-    await m.edit(f"**🤖 Pinged...!!\nLatency:** `{ms}` ms")
+    m = await message.reply_text("**🤖 𝐏ɪɴɢ...!!**")
+    await m.edit(f"**🤖 𝐏ɪɴɢᴇᴅ...!!\n𝐋ᴀᴛᴇɴᴄʏ:** `{ms}` ms") 
 
 
 @bot.on_message(cdx(["repo", "repository"]) & ~pyrofl.bot)
@@ -1320,22 +1318,30 @@ async def git_repo_link(client, message):
     else:
         mention = message.from_user.mention
     if message.chat.type == ChatType.PRIVATE:
-        caption = f"""**➻ Hello, {mention}
-    
-🥀 I am An ≽ Advanced ≽ High Quality
-Bot, I Can Stream 🌿 Audio & Video In
-Your ♚ Channel And Group.
-
-🐬 Feel Free ≽ To Use Me › And Share
-With Your ☛ Other Friends.**"""
+        caption = f"""
+╭───────────────────⦿‍
+│❍ • ʜᴇʏ  {mention} •‍
+│❍ • ɪ ᴀᴍ  @{bot.me.username}•‍
+├───────────────────⦿‍
+│❍ • ɪ ʜᴀᴠᴇ sᴘᴇᴄɪᴀʟ ғᴇᴀᴛᴜʀᴇs •‍
+├───────────────────⦿‍
+│❍ • ᴀ ғᴀsᴛ & ᴘᴏᴡᴇʀғᴜʟ ᴛᴇʟᴇɢʀᴀᴍ ᴍᴜsɪᴄ‍
+│     ʙᴏᴛ ᴡɪᴛʜ ᴀᴡᴇsᴏᴍᴇ ғᴇᴀᴛᴜʀᴇs‍
+│❍ • ʏᴏᴜ ᴄᴀɴ ᴘʟᴀʏ ᴍᴜꜱɪᴄ + ᴠɪᴅᴇᴏ •‍
+│❍ • ʙᴇsᴛ ǫᴜɪʟɪᴛʏ ᴍᴜsɪᴄ sᴏᴜɴᴅ •‍
+│❍ • ɴᴏ ʟᴀɢs + ɴᴏ ᴀᴅs •‍
+│❍ • 24x7 ᴏɴʟɪɴᴇ sᴜᴘᴘᴏʀᴛ •‍
+├───────────────────⦿‍
+│        [✰ 𝖮ᴡ፝֠֩𝛈𝛆ʀ  ✰](https://t.me/DvisDmBot)
+╰───────────────────⦿"""
     else:
         caption = f"**➻ Hello, {mention}.**"
     buttons = InlineKeyboardMarkup(
         [
             [
                 InlineKeyboardButton(
-                    text="🌺 𝐓𝐎𝐂𝐇 𝐊𝐑𝐎 𝐁𝐄𝐓𝐀  🦋",
-                    url="https://files.catbox.moe/7rmgyr.mp4",
+                    text="🌺 𝐎ᴘᴇɴ 𝐑ᴇᴘᴏsɪᴛᴏʀʏ 𝐋ɪɴᴋ 🦋",
+                    url="https://github.com/IamDvis/DV-MUSIC-V2",
                 )
             ],
             [
@@ -1364,12 +1370,12 @@ async def update_repo_latest(client, message):
         return await response.edit("Git Command Error")
     except InvalidGitRepositoryError:
         return await response.edit("Invalid Git Repsitory")
-    to_exc = f"git fetch origin aditya &> /dev/null"
+    to_exc = f"git fetch origin dvis &> /dev/null"
     os.system(to_exc)
     await asyncio.sleep(7)
     verification = ""
     REPO_ = repo.remotes.origin.url.split(".git")[0]  # main git repository
-    for checks in repo.iter_commits(f"HEAD..origin/aditya"):
+    for checks in repo.iter_commits(f"HEAD..origin/dvis"):
         verification = str(checks.count())
     if verification == "":
         return await response.edit("Bot is up-to-date!")
@@ -1378,7 +1384,7 @@ async def update_repo_latest(client, message):
         format,
         "tsnrhtdd"[(format // 10 % 10 != 1) * (format % 10 < 4) * format % 10 :: 4],
     )
-    for info in repo.iter_commits(f"HEAD..origin/aditya"):
+    for info in repo.iter_commits(f"HEAD..origin/dvis"):
         updates += f"<b>➣ #{info.count()}: [{info.summary}]({REPO_}/commit/{info}) by -> {info.author}</b>\n\t\t\t\t<b>➥ Commited on:</b> {ordinal(int(datetime.fromtimestamp(info.committed_date).strftime('%d')))} {datetime.fromtimestamp(info.committed_date).strftime('%b')}, {datetime.fromtimestamp(info.committed_date).strftime('%Y')}\n\n"
     _update_response_ = "<b>A new update is available for the Bot!</b>\n\n➣ Pushing Updates Now</code>\n\n**<u>Updates:</u>**\n\n"
     _final_updates_ = _update_response_ + updates
@@ -1395,10 +1401,9 @@ async def update_repo_latest(client, message):
         f"{nrs.text}\n\nBot was updated successfully! Now, wait for 1 - 2 mins until the bot reboots!"
     )
     os.system("pip3 install -r requirements.txt --force-reinstall")
-    os.system(f"kill -9 {os.getpid()} && python3 -m DvisMusic")
+    os.system(f"kill -9 {os.getpid()} && python3 -m DvisMusicr")
     sys.exit()
     return
-
 
 @bot.on_message(cdx(["stats"]) & ~pyrofl.private)
 async def check_bot_stats(client, message):
@@ -1407,12 +1412,12 @@ async def check_bot_stats(client, message):
     except:
         pass
     photo = START_IMAGE_URL
-    caption = "**⏤͟͞ADITYA PLAYER STATS ༗**"
+    caption = "**⏤͟͞DVIS MUSIC STATS ༗**"
     buttons = InlineKeyboardMarkup(
         [
             [
                 InlineKeyboardButton(
-                    text="🐬 Check Stats",
+                    text="🐬 Mʏ Sᴛᴀᴛs",
                     callback_data="check_stats",
                 )
             ],
@@ -1446,15 +1451,15 @@ async def check_total_stats(client, query):
         video_chats = len(ACTIVE_VIDEO_CHATS)
         
         return await query.answer(
-            f"""⏱️ Bot Run Time [Boot]
+            f"""⏱️ 𝐁ᴏᴛ 𝐑ᴜɴ 𝐓ɪᴍᴇ  [Boot]
 ☛ {uptime}
 
-🔴 Served Chats: {served_chats}
-🔵 Served Users: {served_users}
+🔴 Sᴇʀᴠᴇᴅ Cʜᴀᴛs ➥ {served_chats}
+🔵 Served Users ➥ {served_users}
 
-🦋 Total Active Chats [{activ_chats}]
-✿⋟ Audio Stream: {audio_chats}
-✿⋟ Video Stream: {video_chats}""",
+🦋 𝐓ᴏᴛᴀʟ 𝐀ᴄᴛɪᴠᴇ 𝐂ʜᴀᴛs [{activ_chats}]
+✿⋟ Aᴜᴅɪᴏ Sᴛʀᴇᴀᴍ ➥ {audio_chats}
+✿⋟ Vɪᴅᴇᴏ Sᴛʀᴇᴀᴍ ➥ {video_chats}""",
             show_alert=True
         )
     except Exception as e:
@@ -1484,7 +1489,7 @@ async def broadcast_message(client, message):
         if "-user" in query:
             query = query.replace("-user", "")
         if query == "":
-            return await message.reply_text("**🥀 Please Give Me Some Text To Broadcast❗...**")
+            return await message.reply_text("**🥀 Pʟᴇᴀsᴇ Gɪᴠᴇ Mᴇ Sᴏᴍᴇ Tᴇxᴛ Tᴏ Bʀᴏᴀᴅᴄᴀsᴛ❗...**")
     
     # Bot broadcast inside chats
     if "-nobot" not in message.text:
@@ -1522,7 +1527,7 @@ async def broadcast_message(client, message):
             except Exception:
                 continue
         try:
-            await message.reply_text("**✅ Broadcast Messages In {0}  Chats With {1} Pins From Bot.**".format(sent, pin))
+            await message.reply_text("✅ 𝐁ʀᴏᴀᴅᴄᴀ𝐬ᴛ 𝐌ᴇ𝐬𝐬ᴀɢᴇ𝐬 𝐈ɴ **{0}**  𝐂ʜᴀᴛ𝐬 𝐖ɪᴛʜ **{1}** 𝐏ɪɴ𝐬 𝐅ʀᴏᴍ 𝐁ᴏᴛ.".format(sent, pin))
         except:
             pass
 
@@ -1549,12 +1554,9 @@ async def broadcast_message(client, message):
             except Exception:
                 pass
         try:
-            await message.reply_text("**✅ Broadcast Messages To {0} Users.**".format(susr))
+            await message.reply_text("✅ 𝐁ʀᴏᴀᴅᴄᴀ𝐬ᴛ 𝐌ᴇ𝐬𝐬ᴀɢᴇ𝐬 𝐓ᴏ  **{0}** 𝐔𝐬ᴇʀ𝐬.".format(susr))
         except:
             pass
-
-
-
 
 
 if __name__ == "__main__":
